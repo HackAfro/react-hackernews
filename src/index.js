@@ -1,22 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloProvider } from 'react-apollo';
-import ApolloClient from 'apollo-boost';
+
+// TODO -- 1 => add imports so we can make graphql queries and mutations.
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const client = new ApolloClient({
-  uri: '8base_ENDPOINT_URL',
-});
+// TODO -- 2 => Create client using ApolloClient
+const client = {};
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById('root')
-);
+// TODO -- 3 => Wrap application with ApolloProvider
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
