@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
-// TODO -- 1
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+
+// TODO -- 1 - Add withAuth import
+import { withAuth } from '@8base/react-sdk';
 
 const inputStyles = {
   width: '400px',
@@ -20,6 +21,10 @@ const labelStyles = {
   marginRight: '7px',
 };
 
+const loginAreaStyles = {
+  marginTop: '15px',
+};
+
 // TODO -- 2
 const POST_MUTATION = gql`
   mutation PostCreate($data: PostCreateInput!) {
@@ -29,6 +34,7 @@ const POST_MUTATION = gql`
   }
 `;
 
+// TODO -- 3 Utilise props provided by the withAuth enhancer
 const PostForm = ({ history }) => {
   const [post, setPost] = useState({
     url: '',
@@ -48,8 +54,8 @@ const PostForm = ({ history }) => {
     }
   };
 
+  // TODO -- 3  Check if user is authenticated before showing Login
   return (
-    // TODO -- 3
     <Mutation mutation={POST_MUTATION}>
       {(postCreate) => (
         <form
@@ -97,4 +103,5 @@ const PostForm = ({ history }) => {
   );
 };
 
+// TODO -- 2 Wrap component with withAuth enhancer
 export default PostForm;
