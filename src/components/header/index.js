@@ -1,22 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { withAuth } from '@8base/react-sdk';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 
-import LogoutButton from './logout';
+// TODO -- 1 Add auth imports
 import './index.css';
 
-const USER_QUERY = gql`
-  query UserQuery {
-    user {
-      id
-      email
-    }
-  }
-`;
+// TODO -- 2 - Add user query
+const USER_QUERY = ``;
 
-const Header = ({ auth: { isAuthorized, authorize } }) => {
+// TODO -- 4 - Utilise props provided by enhancers
+const Header = () => {
   return (
     <header id="news-header">
       <section>
@@ -34,25 +26,15 @@ const Header = ({ auth: { isAuthorized, authorize } }) => {
           </ul>
         </div>
       </section>
+      {/* TODO -- 5 - Check for auth state of the user before making query*/}
       <div className="auth">
-        {isAuthorized ? (
-          <Query query={USER_QUERY}>
-            {(user) => {
-              return (
-                <div>
-                  <div>{isAuthorized} yes</div> <LogoutButton />
-                </div>
-              );
-            }}
-          </Query>
-        ) : (
-          <div>
-            <button onClick={() => authorize()}>Login</button>
-          </div>
-        )}
+      <div>
+        <NavLink to="/login">Login</NavLink>
+      </div>
       </div>
     </header>
   );
 };
 
-export default withAuth(Header);
+// TODO -- 3 - Wrap component with withAuth enhancer 
+export default Header;
