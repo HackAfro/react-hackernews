@@ -1,37 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppProvider, WebAuth0AuthClient } from '@8base/react-sdk';
+
+// TODO -- 1
+
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const URI = 'https://api.8base.com/cjvp33au9000201ru4hupd7r5';
-const AUTH_CLIENT_ID = '48r59uLZdFgc55CdeJyt0yGaX1V2aLNR';
-const AUTH_DOMAIN = 'secure.8base.com';
+const URI = 'YOUR_8BASE_URI';
 
-const auth0WebClient = new WebAuth0AuthClient({
-  domain: AUTH_DOMAIN,
-  clientId: AUTH_CLIENT_ID,
-  redirectUri: `${window.location.origin}/auth/callback`,
-  logoutRedirectUri: `${window.location.origin}/`,
+// TODO -- 2
+const AUTH_CLIENT_ID = 'YOUR_AUTH_CLIENT_ID';
+const AUTH_DOMAIN = 'YOUR_AUTH_DOMAIN';
+
+// TODO -- 3 - Setup Auth client
+const client = new ApolloClient({
+  uri: URI
 });
 
+// TODO -- 4 - Replace Apollo provider with 8base provider
 ReactDOM.render(
-  <AppProvider
-    uri={URI}
-    authClient={auth0WebClient}
-    onRequestError={() => {}}
-    onRequestSuccess={(e) => {console.log(e)}}
-  >
-    {({ loading }) => {
-      if (loading) {
-        return <p>Please wait...</p>;
-      }
-      return <App />;
-    }}
-  </AppProvider>,
-  document.getElementById('root')
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
